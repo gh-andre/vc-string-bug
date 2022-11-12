@@ -3,20 +3,21 @@
 #include <cstdlib>
 #include <cstdint>
 
-void print_s(uint16_t i, const std::string& s)
-{
-  printf("%s\n", s.c_str());
-}
-
-const char *get_s(void)
-{
-  return "Thumbnail";
-}
-
 int main(void)
 {
-  uint16_t i = 123;
-  print_s(i, get_s());
+    char buf[64];
+    memset(buf, 0xff, sizeof(buf));
 
-  return EXIT_SUCCESS;
+    std::string* s = new (buf) std::string(get_s());
+    printf("%s\n", s->c_str());
+
+    for(size_t i = 0; i < sizeof(buf); i++) {
+       if(i && i % 16 == 0)
+          printf("\n");
+       printf("%02hhx ", buf[i]);
+    }
+    printf("\n");
+
+    s->std::string::~string();
+    return EXIT_SUCCESS;
 }
