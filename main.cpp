@@ -12,12 +12,12 @@ std::string get_s(void)
 
 int main(void)
 {
-    const char *src = "Thumbnail";
+    const char *src = "Thumbnail-a";
     
     char buf[64];
     memset(buf, 0xff, sizeof(buf));
 
-    std::string* s = new (buf) std::string(src, strlen(src));
+    std::string* s = new (buf) std::string(src, 9);
     printf("%s\n", s->c_str());
 
     for(size_t i = 0; i < sizeof(buf); i++) {
