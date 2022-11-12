@@ -2,6 +2,12 @@
 #include <string>
 #include <cstdlib>
 #include <cstdint>
+#include <new>
+
+const char *get_s(void)
+{
+    return "Thumbnail";
+}
 
 int main(void)
 {
