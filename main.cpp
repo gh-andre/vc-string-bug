@@ -2,6 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include <cstdint>
+#include <cstring>
 #include <new>
 
 std::string get_s(void)
@@ -11,10 +12,12 @@ std::string get_s(void)
 
 int main(void)
 {
+    char src[] = "Thumbnail";
+    
     char buf[64];
     memset(buf, 0xff, sizeof(buf));
 
-    std::string* s = new (buf) std::string(get_s());
+    std::string* s = new (buf) std::string(src, strlen(src));
     printf("%s\n", s->c_str());
 
     for(size_t i = 0; i < sizeof(buf); i++) {
