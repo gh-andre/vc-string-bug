@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <new>
 
-const char *get_s(void)
+std::string get_s(void)
 {
     return "Thumbnail";
 }
