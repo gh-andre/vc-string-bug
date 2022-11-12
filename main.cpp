@@ -12,7 +12,7 @@ std::string get_s(void)
 
 int main(void)
 {
-    char src[] = "Thumbnail";
+    const char *src = "Thumbnail";
     
     char buf[64];
     memset(buf, 0xff, sizeof(buf));
