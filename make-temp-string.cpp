@@ -6,6 +6,8 @@
 #include <new>
 #include <memory>
 
+#include "make-temp-string.h"
+
 namespace vc_tmp_str_bug {
    
 struct info_t {
@@ -33,14 +35,6 @@ __declspec(noinline) void copier(const std::string& s, char buf[128])
     return s.c_str();
 }
 
-struct X {
-   const char *sptr;
-   X(const std::string& s, char buf[128]) : sptr(s.c_str())
-   {
-      copier(s, buf);
-   }
-};  
-   
 __declspec(noinline) const char *printer_caller(char buf[128])
 {
    volatile char fil[32];
