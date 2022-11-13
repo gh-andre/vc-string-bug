@@ -23,7 +23,7 @@ __declspec(noinline) void *filler(void)
 {
    volatile char fil[128];
    for(size_t i = 0; i < sizeof(fil); i++)
-      *(fil+i) = '\xff';
+      *(fil+i) = '<';
    return (void*) fil;
 }
 
@@ -34,9 +34,8 @@ __declspec(noinline) void copier(const std::string& s, char buf[128])
 }
 
 struct X {
-   int i;
    const char *sptr;
-   X(int i, const std::string& s, char buf[128]) : i(i), sptr(s.c_str())
+   X(const std::string& s, char buf[128]) : sptr(s.c_str())
    {
       copier(s, buf);
    }
@@ -46,8 +45,8 @@ __declspec(noinline) const char *printer_caller(char buf[128])
 {
    volatile char fil[32];
    for(size_t i = 0; i < sizeof(fil); i++)
-      *(fil+i) = '\xaa';
-   X x(123, get_s(), buf);
+      *(fil+i) = '>';
+   X x(get_s(), buf);
    return x.sptr;
 }
 
