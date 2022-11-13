@@ -6,9 +6,15 @@
 #include <new>
 #include <memory>
 
+struct info_t {
+   const char *abc;
+   const char *xyz;
+   int i;
+} info[] = {{"Image", "XYZ1", 1}, {"Thumbnail", "XYZ2", 2}};
+
 const char *get_s(void)
 {
-  return "Thumbnail";
+  return info[1].abc;
 }
 
 __declspec(noinline) void *filler(void)
