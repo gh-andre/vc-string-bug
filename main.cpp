@@ -45,8 +45,8 @@ int main(void)
     memcpy(filcpy.get(), fil, 128);
 
     for(size_t i = 0; i < 128; i++) {
-     if(i && i % 16 == 0)
-        printf("\n%08p: ", (filcpy.get() + i));
+       if(i % 16 == 0)
+          printf("\n%08p: ", (filcpy.get() + i));
      printf("%02hhx ", *(filcpy.get() + i));
     }
     printf("\n");
