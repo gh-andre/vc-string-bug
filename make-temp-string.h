@@ -13,8 +13,9 @@ struct X {
 
 // mimics a real-life function that returns a static string
 __declspec(noinline) const char *get_s(void);
-   
-int make_temp_string(void);
+
+// calls test functions that create a string temporary
+void make_temp_string(void);
 }
 
 #endif // VC_TEMP_STR_BUG_MAKE_TEMP_STRING_H
