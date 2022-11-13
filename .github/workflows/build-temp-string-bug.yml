@@ -1,4 +1,4 @@
-name: Make temp string
+name: Build temp string bug
 
 on:
   workflow_dispatch:
