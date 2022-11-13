@@ -5,7 +5,6 @@
 
 namespace vc_tmp_str_bug {
 struct X {
-   std::string sx;
    const char *sptr;
    X(const std::string& s, char buf[128]);
 };
