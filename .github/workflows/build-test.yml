@@ -12,11 +12,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    # /std:c++14 
     - name: Build
       shell: cmd
       run: |
         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall" x64
-        cl /std:c++14 /MD /DWIN32 /D_WINDOWS /W3 /GR /EHsc /O2 /DNDEBUG /Zi main.cpp /link /machine:x64 /INCREMENTAL:NO
+        cl /MD /DWIN32 /D_WINDOWS /W3 /GR /EHsc /O2 /DNDEBUG /Zi main.cpp /link /machine:x64 /INCREMENTAL:NO
         main
         rmdir /S /Q .git
 
