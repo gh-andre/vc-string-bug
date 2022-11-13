@@ -5,28 +5,52 @@
 #include <cstring>
 #include <new>
 
-std::string get_s(void)
+const char *get_s(void)
 {
-    return "Thumbnail";
+  return "Thumbnail";
+}
+
+__declspec(noinline) void *filler(void)
+{
+   volatile char fil[128];
+   for(size_t i = 0; i < sizeof(fil); i++)
+      *(fil+i) = '\xff';
+   return (void*) fil;
+}
+
+__declspec(noinline) const char * copier(const std::string& s, char buf[128])
+{
+    strcpy(buf, s.c_str());
+    return s.c_str();
+}
+
+__declspec(noinline) const char *printer_caller(char buf[128])
+{
+   volatile char fil[32];
+   for(size_t i = 0; i < sizeof(fil); i++)
+      *(fil+i) = '\xaa';
+   return copier(get_s(), buf);
 }
 
 int main(void)
 {
-    const char *src = "Thumbnail-a";
-    
-    char buf[64];
-    memset(buf, 0xff, sizeof(buf));
+    std::unique_ptr<char[]> buf(new char[128]);
+    std::unique_ptr<char[]> filcpy(new char[128]);
 
-    std::string* s = new (buf) std::string(src, 9);
-    printf("%s\n", s->c_str());
+    const void *fil = filler();
 
-    for(size_t i = 0; i < sizeof(buf); i++) {
-       if(i && i % 16 == 0)
-          printf("\n");
-       printf("%02hhx ", buf[i]);
+    const char *s = printer_caller(buf.get());
+
+    memcpy(filcpy.get(), fil, 128);
+
+    for(size_t i = 0; i < 128; i++) {
+     if(i && i % 16 == 0)
+        printf("\n%08p: ", (filcpy.get() + i));
+     printf("%02hhx ", *(filcpy.get() + i));
     }
     printf("\n");
 
-    s->std::string::~string();
+    printf("Thumbnail: %08p (%s)\n", s, buf.get());
+
     return EXIT_SUCCESS;
 }
