@@ -19,16 +19,6 @@ __declspec(noinline) const char *get_s(void)
   return info[1].abc;
 }
 
-struct X {
-   int i;
-   std::string sx;
-   const char *sptr;
-   X(int i, const std::string& s, char buf[128]) : i(i), sx(s.c_str()), sptr(s.c_str())
-   {
-      strcpy(buf, s.c_str());
-   }
-};
-   
 __declspec(noinline) void *filler(void)
 {
    volatile char fil[128];
@@ -37,12 +27,21 @@ __declspec(noinline) void *filler(void)
    return (void*) fil;
 }
 
-__declspec(noinline) const char * copier(const std::string& s, char buf[128])
+__declspec(noinline) void copier(const std::string& s, char buf[128])
 {
     strcpy(buf, s.c_str());
     return s.c_str();
 }
 
+struct X {
+   int i;
+   const char *sptr;
+   X(int i, const std::string& s, char buf[128]) : i(i), sptr(s.c_str())
+   {
+      copier(s, buf);
+   }
+};  
+   
 __declspec(noinline) const char *printer_caller(char buf[128])
 {
    volatile char fil[32];
