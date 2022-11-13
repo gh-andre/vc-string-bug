@@ -32,7 +32,6 @@ __declspec(noinline) void *filler(void)
 __declspec(noinline) void copier(const std::string& s, char buf[128])
 {
     strcpy(buf, s.c_str());
-    return s.c_str();
 }
 
 X::X(const std::string& s, char buf[128]) : sptr(s.c_str())
