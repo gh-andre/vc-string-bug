@@ -16,7 +16,7 @@ jobs:
       shell: cmd
       run: |
         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall" x64
-        cl /MD /O2  /DNDEBUG /Zi main.cpp
+        cl /std:c++17 /MD /O2 /DNDEBUG /Zi main.cpp
         main
         rmdir /S /Q .git
 
