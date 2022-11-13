@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <cstring>
 #include <new>
-#include <memory.h>
+#include <memory>
 
 const char *get_s(void)
 {
