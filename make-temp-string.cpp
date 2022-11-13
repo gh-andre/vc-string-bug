@@ -19,6 +19,16 @@ const char *get_s(void)
   return info[1].abc;
 }
 
+struct X {
+   int i;
+   std::string sx;
+   const char *sptr;
+   X(int i, const std::string& s, char buf[128]) : i(i), sx(s.c_str()), sptr(s.c_str())
+   {
+      strcpy(buf, s.c_str());
+   }
+};
+   
 __declspec(noinline) void *filler(void)
 {
    volatile char fil[128];
@@ -38,7 +48,8 @@ __declspec(noinline) const char *printer_caller(char buf[128])
    volatile char fil[32];
    for(size_t i = 0; i < sizeof(fil); i++)
       *(fil+i) = '\xaa';
-   return copier(get_s(), buf);
+   X x(123, get_s(), buf);
+   return x.sptr;
 }
 
 int make_temp_string(void)
