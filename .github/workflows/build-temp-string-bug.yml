@@ -23,6 +23,7 @@ jobs:
     - name: Package
       shell: cmd
       run: |
+        call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall" x64
         echo %VCToolsInstallDir%
         copy /Y "%VCToolsInstallDir%\include\xstring .
         del /Q make-temp-string.obj
