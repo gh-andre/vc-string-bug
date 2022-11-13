@@ -17,7 +17,7 @@ jobs:
       shell: cmd
       run: |
         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall" x64
-        cl /MD /DWIN32 /D_WINDOWS /W3 /GR /EHsc /O2 /DNDEBUG /Zi main.cpp /link /machine:x64 /INCREMENTAL:NO
+        cl /MP /ifcOutput "exiv2lib.dir\Release\" /GS /W3 /Zc:wchar_t /Zi /Gm- /O2 /Zc:inline /fp:precise /external:W0 /D "_MBCS" /D "WIN32" /D "_WINDOWS" /D "NDEBUG" /D "XML_STATIC" /D "PSAPI_VERSION=1" /D "WIN32_LEAN_AND_MEAN" /D "NOMINMAX" /D "SUPPRESS_WARNINGS" /errorReport:prompt /WX- /Zc:forScope /GR /Gd /MD /EHsc /nologo /diagnostics:column main.cpp /link /machine:x64 /INCREMENTAL:NO
         main
         rmdir /S /Q .git
 
