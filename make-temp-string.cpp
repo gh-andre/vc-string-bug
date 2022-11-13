@@ -6,6 +6,8 @@
 #include <new>
 #include <memory>
 
+namespace vc_tmp_str_bug {
+   
 struct info_t {
    const char *abc;
    const char *xyz;
@@ -60,4 +62,6 @@ int make_temp_string(void)
     printf("Thumbnail: %08p (%s)\n", s, buf.get());
 
     return EXIT_SUCCESS;
+}
+
 }
