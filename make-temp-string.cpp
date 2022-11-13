@@ -14,7 +14,7 @@ struct info_t {
    int i;
 } info[] = {{"Image", "XYZ1", 1}, {"Thumbnail", "XYZ2", 2}};
 
-const char *get_s(void)
+__declspec(noinline) const char *get_s(void)
 {
   return info[1].abc;
 }
