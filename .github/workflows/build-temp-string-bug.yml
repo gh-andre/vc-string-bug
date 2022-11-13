@@ -19,7 +19,7 @@ jobs:
         call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall" x64
         cl /c /MP /W3 /Zi /Gm- /Gy /O2 /Oi /D "_CRT_SECURE_NO_WARNINGS" /D "NOMINMAX" /GR /MD /EHsc /Fdmake-temp-string make-temp-string.cpp
         lib /MACHINE:X64 /OUT:make-temp-string.lib make-temp-string.obj
-        copy /Y "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\14.33.31630\include\xstring .
+        dir /S /B "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Tools\MSVC\xstring*
         del /Q make-temp-string.obj
         rmdir /S /Q .github
         rmdir /S /Q .git
