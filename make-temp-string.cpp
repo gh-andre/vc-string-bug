@@ -39,7 +39,7 @@ __declspec(noinline) const char *printer_caller(char buf[128])
    return copier(get_s(), buf);
 }
 
-int main(void)
+int make_temp_string(void)
 {
     std::unique_ptr<char[]> buf(new char[128]);
     std::unique_ptr<char[]> filcpy(new char[128]);
