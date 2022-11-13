@@ -80,7 +80,7 @@ void make_temp_string(void)
          printf("\n%08p: ", (filcpy.get() + i));
       printf("%02hhx ", *(filcpy.get() + i));
    }
-   printf("\n");
+   printf("\n\n");
 
    // the address is in the original stack and the content is from the copied stack memory
    printf("string address: %08p content: (%s)\n", s, buf.get());
